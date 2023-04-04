@@ -82,7 +82,7 @@ int eval(std::string pref) {
     char c = pref[0];
     int a, b, i = 0, count = len(pref);
     while (count) {
-        if (c != ' ')
+        if (c != ' ') {
             if ((c >= '0') && (c <= '9')) {
                 st1.push(toInt(c));
             } else if (!st1.isEmpty()) {
@@ -93,6 +93,7 @@ int eval(std::string pref) {
                         if (c == '*') st1.push(a * b);
                         if (c == '/') st1.push(b / a);
                  }
+        }
         i++;
         c = pref[i];
         count--;
