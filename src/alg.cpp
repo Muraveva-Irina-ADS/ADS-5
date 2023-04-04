@@ -57,11 +57,13 @@ std::string infx2pstfx(std::string inf) {
                     }
                 }
             }
-            else if ((st.isEmpty()) || ch == '(' || getPrior(ch) > getPrior(st.get())) {
+         }
+         else 
+            if ((st.isEmpty()) || ch == '(' || getPrior(ch) > getPrior(st.get())) {
                 st.push(ch);
             }
-            else if ((!st.isEmpty()) && (getPrior(ch) <= getPrior(st.get()))) {
-                while ((!st.isEmpty()) && (getPrior(ch) <= getPrior(st.get()))) {
+         else if ((!st.isEmpty()) && (getPrior(ch) <= getPrior(st.get()))) {
+             while ((!st.isEmpty()) && (getPrior(ch) <= getPrior(st.get()))) {
                     tmp = st.pop();
                     result = result + tmp + " ";
                 }
