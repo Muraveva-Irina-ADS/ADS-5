@@ -70,7 +70,7 @@ std::string infx2pstfx(std::string inf) {
                          st.push(ch);
                      }
         }
-        i++;
+        ++i;
         ch = inf[i];
     }
     while (!st.isEmpty()) {
