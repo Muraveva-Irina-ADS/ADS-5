@@ -48,8 +48,7 @@ std::string infx2pstfx(std::string inf) {
     while (ch != '\0') {
         if (ch >= '0' && ch <= '9') {
             result = result + ch + " ";
-        }
-        else
+        } else
             if (ch == ')') {
                 if (!st.isEmpty()) {
                     tmp = st.pop();
@@ -58,12 +57,10 @@ std::string infx2pstfx(std::string inf) {
                         tmp = st.pop();
                     }
                 }
-            }
-            else
+             } else
                if ((st.isEmpty()) || ch == '(' || pr(ch) > pr(st.get())) {
                      st.push(ch);
-               }
-               else
+               } else
                     if ((!st.isEmpty()) && (pr(ch) <= pr(st.get()))) {
                          while ((!st.isEmpty()) && (pr(ch) <= pr(st.get()))) {
                              tmp = st.pop();
@@ -92,15 +89,15 @@ int eval(std::string pref) {
             if ((c >= '0') && (c <= '9'))
                 st1.push(toInt(c));
             else {
-                    if (!st1.isEmpty()) {
+                if (!st1.isEmpty()) {
                         a = st1.pop();
                         b = st1.pop();
                         if (c == '+') st1.push(a + b);
-                        if (c == '-') st1.push(a - b);
+                        if (c == '-') st1.push(b - a);
                         if (c == '*') st1.push(a * b);
-                        if (c == '/') st1.push(a / b);
+                        if (c == '/') st1.push(b / a);
                 }
-             }
+            }
         }
         i++;
         c = pref[i];
