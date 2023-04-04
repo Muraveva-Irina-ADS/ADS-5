@@ -69,10 +69,9 @@ std::string infx2pstfx(std::string inf) {
                          }
                          st.push(ch);
                      }
-        }
         ++i;
         ch = inf[i];
-    }
+        }
     while (!st.isEmpty()) {
         tmp = st.pop();
         if (st.isEmpty()) result = result + tmp;
@@ -102,7 +101,6 @@ int eval(std::string pref) {
             }
         }
         i++;
-        std::cout << c;
         c = pref[i];
         count--;
     }
