@@ -3,7 +3,7 @@
 #include <map>
 #include "tstack.h"
 
-int getPrior(char c) {
+int pr(char c) {
     switch (c) {
     case '(':
         return 0;
@@ -36,6 +36,7 @@ int toInt(char ch) {
         if (ch == key[i])
             return i;
     }
+    return -1;
 }
 
 std::string infx2pstfx(std::string inf) {
@@ -45,8 +46,9 @@ std::string infx2pstfx(std::string inf) {
     int i = 0;
     char ch = inf[0];
     while (ch != '\0') {
-        if (ch >= '0' && ch <= '9')
+        if (ch >= '0' && ch <= '9') {
             result = result + ch + " ";
+        }
         else
             if (ch == ')') {
                 if (!st.isEmpty()) {
@@ -57,13 +59,13 @@ std::string infx2pstfx(std::string inf) {
                     }
                 }
             }
-             else
-                 if ((st.isEmpty()) || ch == '(' || getPrior(ch) > getPrior(st.get())) {
+            else
+               if ((st.isEmpty()) || ch == '(' || pr(ch) > pr(st.get())) {
                      st.push(ch);
-                 }
-                 else
-                     if ((!st.isEmpty()) && (getPrior(ch) <= getPrior(st.get()))) {
-                         while ((!st.isEmpty()) && (getPrior(ch) <= getPrior(st.get()))) {
+               }
+               else
+                    if ((!st.isEmpty()) && (pr(ch) <= pr(st.get()))) {
+                         while ((!st.isEmpty()) && (pr(ch) <= pr(st.get()))) {
                              tmp = st.pop();
                              result = result + tmp + " ";
                          }
@@ -89,7 +91,7 @@ int eval(std::string pref) {
         if (c != ' ') {
             if ((c >= '0') && (c <= '9'))
                 st1.push(toInt(c));
-                else {
+            else {
                     if (!st1.isEmpty()) {
                         a = st1.pop();
                         b = st1.pop();
@@ -98,7 +100,7 @@ int eval(std::string pref) {
                         if (c == '*') st1.push(a * b);
                         if (c == '/') st1.push(a / b);
                 }
-            }
+             }
         }
         i++;
         c = pref[i];
