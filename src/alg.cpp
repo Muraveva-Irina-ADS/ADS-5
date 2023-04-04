@@ -39,7 +39,7 @@ int toInt(char ch) {
 }
 
 std::string infx2pstfx(std::string inf) {
-    Tstack<char> st;
+    TStack<char> st;
     std::string result;
     char tmp;
     int i = 0;
@@ -47,7 +47,7 @@ std::string infx2pstfx(std::string inf) {
     while (ch != '\0') {
         if (ch >= '0' && ch <= '9')
             result = result + ch + " ";
-        else {
+        else
             if (ch == ')') {
                 if (!st.isEmpty()) {
                     tmp = st.pop();
@@ -57,18 +57,18 @@ std::string infx2pstfx(std::string inf) {
                     }
                 }
             }
-         }
-         else 
-            if ((st.isEmpty()) || ch == '(' || getPrior(ch) > getPrior(st.get())) {
-                st.push(ch);
-            }
-         else if ((!st.isEmpty()) && (getPrior(ch) <= getPrior(st.get()))) {
-             while ((!st.isEmpty()) && (getPrior(ch) <= getPrior(st.get()))) {
-                    tmp = st.pop();
-                    result = result + tmp + " ";
-                }
-                st.push(ch);
-            }
+             else
+                 if ((st.isEmpty()) || ch == '(' || getPrior(ch) > getPrior(st.get())) {
+                     st.push(ch);
+                 }
+                 else
+                     if ((!st.isEmpty()) && (getPrior(ch) <= getPrior(st.get()))) {
+                         while ((!st.isEmpty()) && (getPrior(ch) <= getPrior(st.get()))) {
+                             tmp = st.pop();
+                             result = result + tmp + " ";
+                         }
+                         st.push(ch);
+                     }
         }
         i++;
         ch = inf[i];
@@ -83,7 +83,7 @@ std::string infx2pstfx(std::string inf) {
 }
 
 int eval(std::string pref) {
-    Tstack <int> st1;
+    TStack <int> st1;
     char c = pref[0];
     int a, b, i = 0, count = len(pref);
     while (count) {
